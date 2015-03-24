@@ -37,7 +37,7 @@ If an app has a `migrations/` module, you'll need to follow these steps:
 - Run `makemigrations` 
 ```
 find . -name "*.pyc" | xargs rm
-git mv ./migrations/ ./south_migrations/
+mv ./migrations/ ./south_migrations/
 cd ..
 python manage.py makemigrations <package_name>
 ```
