@@ -18,9 +18,11 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
   ```python
   from django.apps import AppConfig
 
+
   class RockNRollConfig(AppConfig):
       name = 'rock_n_roll'
       verbose_name = "Rock ’n’ roll"
+  
   ```
 - Update `__init__.py` in the app's base directory like so:
   ```python
