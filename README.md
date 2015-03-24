@@ -14,7 +14,7 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
   - Remove `south` from `tests_require`
 
 ## App Config
-- Add an `app.py` in the app directory. See (django's docs)[https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors] for full information.
+- Add an `app.py` in the app directory. See [django's docs]([https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors) for full information.
   ```python
   from django.apps import AppConfig
 
