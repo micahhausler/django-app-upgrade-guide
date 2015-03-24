@@ -12,6 +12,8 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
 - In `setup.py`:
   - Check that `install_requires=` includes `Django>=1.6.5`
   - Check that `tests_require=` includes `south>=1.0.2`
+- in `setup.cfg`, add to the `[flake8]` directive's `exclude` option: `...,south_migrations`
+- in `.coveragerc` add to the `[run]` directive's `omit` option: `<app-name>/south_migrations/` 
 
 ## App Config
 - Add an `app.py` in the app directory. See [django's docs](https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors) for full information.
@@ -35,7 +37,8 @@ If an app has a `migrations/` module, you'll need to follow these steps:
 - Rename the `migrations/` module to `south_migrations/` (and remove any .pyc files)
 - Install `django==1.7.7`
 - Run `makemigrations` 
-```
+
+```bash
 find . -name "*.pyc" | xargs rm
 mv ./migrations/ ./south_migrations/
 cd ..
