@@ -3,6 +3,7 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
 
 ## Table of Contents
 - [Dependencies](#dependencies)
+- [Settings](#settings)
 - [App Config](#app-config)
 - [Migrations](#migrations)
 - [1.6 Support](#1.6-support)
@@ -15,6 +16,9 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
 - in `setup.cfg`, add to the `[flake8]` directive's `exclude` option: `...,south_migrations`
 - in `.coveragerc` add to the `[run]` directive's `omit` option: `<app-name>/south_migrations/` 
 
+## Settings
+In your `settings.py`, be sure to add `MIDDLEWARE_CLASSES=(),`
+
 ## App Config
 - Add an `app.py` in the app directory. See [django's docs](https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors) for full information.
   ```python
@@ -23,7 +27,7 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
 
   class RockNRollConfig(AppConfig):
       name = 'rock_n_roll'
-      verbose_name = "Rock ’n’ roll"
+      verbose_name = 'Rock ’n’ roll'
   
   ```
 - Update `__init__.py` in the app's base directory like so:
@@ -53,5 +57,12 @@ python manage.py makemigrations <package_name>
   import django
   if django.VERSION[1] < 7:
       installed_apps += 'south',
+  # or
+  ) + (('south',) if django.VERSION[1] <= 6 else ()),
+  ```           
+- Add to `run_tests.py`:
+  ```python
+  configure_settings()
+  if django.VERSION[1] >= 7:
+      django.setup()
   ```
-            
