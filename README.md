@@ -17,7 +17,11 @@ A guide for upgrading 3rd party django apps from 1.6 to 1.7
 - in `.coveragerc` add to the `[run]` directive's `omit` option: `<app-name>/south_migrations/` 
 
 ## Settings
-In your `settings.py`, be sure to add `MIDDLEWARE_CLASSES=(),`
+In your `settings.py`, be sure to add 
+
+```python
+MIDDLEWARE_CLASSES=(),
+```
 
 ## App Config
 - Add an `app.py` in the app directory. See [django's docs](https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors) for full information.
@@ -52,8 +56,8 @@ python manage.py makemigrations <package_name>
 ## 1.6 Support
 - If you plan on supporting 1.6 and 1.7, be sure to document the need for `south` in 1.6 versions.
 - Dynamically add `south` to the `INSTALLED_APPS` setting like so:
+
   ```python
-  
   import django
   if django.VERSION[1] < 7:
       installed_apps += 'south',
@@ -61,6 +65,7 @@ python manage.py makemigrations <package_name>
   ) + (('south',) if django.VERSION[1] <= 6 else ()),
   ```           
 - Add to `run_tests.py`:
+
   ```python
   configure_settings()
   if django.VERSION[1] >= 7:
