@@ -12,7 +12,8 @@
 
 ## Management Commands
 - `manage.py migrate` no longer takes the `--all` option. It is default
-- The `--no
+- The `--noinput` option has replaced `--interactive=False` on management commands
+  - When using `call_command()`, still use the `interactive=False` kwarg, as `interactive` is the 'destination' for `noinput`
 
 
 ## Custom User Model
