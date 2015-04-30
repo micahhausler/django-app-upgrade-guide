@@ -1,4 +1,9 @@
-# Dropping Django 1.6, add Django 1.8 support 
+# Dropping Django 1.6, add Django 1.8 support
+
+First off, take a minute to read the [Django 1.8 Release Notes](https://docs.djangoproject.com/en/1.8/releases/1.8/)
+
+Second, read the new [Postgres contrib package](https://docs.djangoproject.com/en/1.8/ref/contrib/postgres/) documentation
+ 
 
 ##Checklist:
 
