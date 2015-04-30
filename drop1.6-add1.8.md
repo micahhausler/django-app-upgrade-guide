@@ -45,11 +45,12 @@ Since dropping
 -    if 'south' in settings.INSTALLED_APPS:
 -        from south.management.commands import patch_for_test_db_setup
 -        patch_for_test_db_setup()
--
-```
-- in `settings.py` in the INSTALLED_APPS setting:
 
 ```
+
+- in `settings.py` in the INSTALLED_APPS setting:
+
+```diff
 @@ -1,6 +1,5
   import os
 - import django
