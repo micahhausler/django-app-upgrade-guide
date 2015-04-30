@@ -25,6 +25,7 @@ MIDDLEWARE_CLASSES=(),
 
 ## App Config
 - Add an `app.py` in the app directory. See [django's docs](https://docs.djangoproject.com/en/1.7/ref/applications/#for-application-authors) for full information.
+
   ```python
   from django.apps import AppConfig
 
@@ -34,7 +35,9 @@ MIDDLEWARE_CLASSES=(),
       verbose_name = 'Rock ’n’ roll'
   
   ```
+ 
 - Update `__init__.py` in the app's base directory like so:
+
   ```python
   
   default_app_config = 'rock_n_roll.apps.RockNRollConfig'
