@@ -1,5 +1,4 @@
 # Dropping Django 1.6, add Django 1.8 support 
-Since dropping 
 
 ##Checklist:
 
@@ -28,7 +27,7 @@ Since dropping
 ```
 
 - Remove any `south_migrations` directories
-  - find . -name 'south_migrations' -type f
+  - `find . -name 'south_migrations' -type f | xargs rm -rf`
 - Check that `requirements/docs.txt` has `Django>=1.7`
 - In `run_tests.py`:
 
@@ -70,6 +69,29 @@ Since dropping
   - In `tests_require=[]` increase django-nose to `django-nose>=1.4`
   - **Remove `south` from `install_requires` or `tests_require`**
 
+## Importing models in `__init__.py`
+If you can avoid importing anything into `django-someapp/__init__.py`, please do. 
+If you import your models into here or import another file that imports your models, you'll need to sepcify an `app_lable = 'app_name'` on each of your models. This is a Django 1.9 change but 1.9 is coming out Fall 2015, and 1.8 will print a warning if you don't do this.
+
+Also, try running your tests like this to find any 1.9 errors:
+```
+python -Wall manage.py test
+```
+
+Here is what you need to add if you import your models in your `__init__.py`
+
+```diff
+@@ -11,5 +11,9 @@ class DBMutex(models.Model):
+     :type creation_time: datetime
+     :param creation_time: The creation time of the mutex lock
+     """
++
++    class Meta:
++        app_label = 'db_mutex'
++
+```
+
+
 ## Tests
 
 Ok this is annoying. In 1.8, it is not possible to assign a ForeignKey relation in memory without the ForeignKey model being saved. So this test syntax is no longer viable:
@@ -80,9 +102,9 @@ from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-class MyTestClass(TestCase):
+class StarWarsTestClass(TestCase):
 	def setUp(self):
-	    super(MyTestClass, self).setUp()
+	    super(StarWarsTestClass, self).setUp()
 
 		self.group = N(name='jedi')
 		self.user = N(get_user_model(), username='lukeskywalker', groups=[self.group])
