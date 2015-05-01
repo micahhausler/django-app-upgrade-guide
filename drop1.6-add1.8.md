@@ -4,6 +4,12 @@ First off, take a minute to read the [Django 1.8 Release Notes](https://docs.dja
 
 Second, read the new [Postgres contrib package](https://docs.djangoproject.com/en/1.8/ref/contrib/postgres/) documentation
  
+## Outline
+- [Checklist](#checklist)
+- [Importing modules in `__init__.py`]()
+- [argparse]()
+- [Tests](#tests)
+ 
 
 ##Checklist:
 
@@ -95,6 +101,10 @@ Here is what you need to add if you import your models in your `__init__.py`
 +        app_label = 'db_mutex'
 +
 ```
+
+## ~~optparse~~ argparse
+[Django switched its argument parser](https://docs.djangoproject.com/en/1.8/releases/1.8/#management-commands-that-only-accept-positional-arguments) from the depricated [optparse](https://docs.python.org/2/library/optparse.html) to [argparse](https://docs.python.org/3/library/argparse.html). 
+If you've added custom arguments to a management command, read through the [updated 1.8 docs](https://docs.djangoproject.com/en/1.8/howto/custom-management-commands/) on adding arguments.
 
 
 ## Tests
