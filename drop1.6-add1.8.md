@@ -6,8 +6,8 @@ Second, read the new [Postgres contrib package](https://docs.djangoproject.com/e
  
 ## Outline
 - [Checklist](#checklist)
-- [Importing modules in `__init__.py`]()
-- [argparse]()
+- [Importing modules in `__init__.py`](#importing-models-in-__init__py)
+- [Argparse](#optparse-argparse)
 - [Tests](#tests)
  
 
