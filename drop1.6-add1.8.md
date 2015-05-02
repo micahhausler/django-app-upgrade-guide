@@ -55,8 +55,14 @@ Second, read the new [Postgres contrib package](https://docs.djangoproject.com/e
 -    if 'south' in settings.INSTALLED_APPS:
 -        from south.management.commands import patch_for_test_db_setup
 -        patch_for_test_db_setup()
-
 ```
+
+And later remove:
+
+```diff
+-    parser.add_options(NoseTestSuiteRunner.options)
+```
+
 
 - in `settings.py` in the INSTALLED_APPS setting:
 
@@ -70,6 +76,8 @@ Second, read the new [Postgres contrib package](https://docs.djangoproject.com/e
 
 -            ) + (('south',) if django.VERSION[1] <= 6 else ()),
 +            ),
++            TEST_RUNNER='django_nose.NoseTestSuiteRunner',
++            NOSE_ARGS=['--nocapture', '--nologcapture', '--verbosity=1'],
              ROOT_URLCONF='data_schema.urls',
              DEBUG=False,
 ```
