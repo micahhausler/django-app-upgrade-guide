@@ -5,10 +5,15 @@ First off, take a minute to read the [Django 1.8 Release Notes](https://docs.dja
 Second, read the new [Postgres contrib package](https://docs.djangoproject.com/en/1.8/ref/contrib/postgres/) documentation
  
 ## Outline
+- [Fix typo](#fix-typo)
 - [Checklist](#checklist)
 - [Importing modules in `__init__.py`](#importing-models-in-__init__py)
 - [Argparse](#optparse-argparse)
 - [Tests](#tests)
+
+## Fix Typo
+I accidentally edited the `__init__.py` of all of our django projects to have
+`django_app_config =` where it should have `default_app_config =`. Could you replace that where you find it?
  
 
 ##Checklist:
